@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class CoinCollector : MonoBehaviour
 {
-    public float rotationSpeed;
-    public float bouncingSpeed = .03f;
+    
     [SerializeField] GameObject player;
     [SerializeField] AudioClip collectSound;
     public float volume = 1f;
@@ -34,11 +33,5 @@ public class CoinCollector : MonoBehaviour
 
 
 
-    void Update()
-    {
-        transform.Rotate(0,0,rotationSpeed);
-        float coinPosition = Mathf.Sin(bouncingSpeed * Time.frameCount) * Time.deltaTime;
-        // Debug.Log(coinPosition);
-        transform.position = new Vector3(transform.position.x, transform.position.y + coinPosition, transform.position.z);
-    }
+
 }
