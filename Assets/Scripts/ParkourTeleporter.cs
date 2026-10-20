@@ -38,7 +38,7 @@ public class ParkourTeleporter : MonoBehaviour
                 // character controller has to be disabled to manually change position in code for some very strange reason
                 playerCharacterController.enabled = false;
 
-                player.transform.position =  respawn.transform.position;
+                player.transform.position = respawn.transform.position;
 
                 playerCharacterController.enabled = true;
             }
