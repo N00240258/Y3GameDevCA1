@@ -9,11 +9,13 @@ public class ParkourTeleporter : MonoBehaviour
     [SerializeField] public GameObject respawnPositions;
     [SerializeField] GameObject player;
     private CharacterController playerCharacterController;
+    private SphereCollider sphereCollider;
 
 
     void Start()
     {
         if (player) playerCharacterController = player.GetComponent<CharacterController>();
+        
     }
 
     void OnTriggerEnter(Collider other)
@@ -55,7 +57,12 @@ public class ParkourTeleporter : MonoBehaviour
 
     void OnDrawGizmos()
     {
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, 2.5f);
+        if (GetComponent<SphereCollider>())
+        {
+            sphereCollider = GetComponent<SphereCollider>();
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(transform.position, sphereCollider.radius);
+        } 
+        
     }
 }
