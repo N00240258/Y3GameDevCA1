@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    public bool diamondCollected = false;
-    public bool crownCollected = false;
-    public bool keyCollected = false;
+    static public int diamondsCollected = 0;
+    static public bool crownCollected = false;
+    static public bool keyCollected = false;
 }

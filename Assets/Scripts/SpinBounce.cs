@@ -11,7 +11,6 @@ public class SpinBounce : MonoBehaviour
     void Start()
     {
         originalPosition = transform.position;
-        Debug.Log(transform.rotation);
     }
 
     void Update()
