@@ -1,3 +1,4 @@
+using StarterAssets;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement; 
@@ -5,27 +6,47 @@ using UnityEngine.SceneManagement;
 public class levelChanger : MonoBehaviour
 {
     [SerializeField] Canvas canvas;
+    [SerializeField] GameObject player;
     [SerializeField] TextMeshProUGUI diamondCountText;
+
+    [Header("Celebration")] 
+    [Tooltip("Confetti prefab spawned in front of the camera when the level is cleared.")] 
+    [SerializeField] GameObject confettiEffect; 
+
+    [Tooltip("How far in front of the camera the confetti appears. Keep it further than the Level Complete canvas Plane Distance, and closer than the player.")] 
+    [SerializeField] float confettiDistance = 1.2f; 
+
+    private ThirdPersonController playerController;
 
     void Start()
     {
-        if(canvas.enabled) {
+        if(canvas && canvas.enabled) {
             canvas.enabled = false;
         }
+        if (player && player.GetComponent<ThirdPersonController>()) playerController = player.GetComponent<ThirdPersonController>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (Inventory.keyCollected)
+        if (Inventory.crownCollected)
         {
-            Inventory.keyCollected = false;
-            LoadLevel2();
-        }
-        else if (Inventory.crownCollected)
-        {
-            diamondCountText.text = "You found " + Inventory.diamondsCollected + " out of 5 diamonds";
+            if(Inventory.diamondsCollected >= 6)
+            {
+                diamondCountText.text = "You found all the diamonds!!";
+            }
+            else
+            {
+                diamondCountText.text = "You found " + Inventory.diamondsCollected + " out of 6 diamonds";
+            }
+            
+            playerController.enabled = false;
+            Cursor.lockState = CursorLockMode.None;
             canvas.enabled = true;
             Time.timeScale = 0f;
+        }
+        else if (Inventory.keyCollected)
+        {
+            LoadLevel2();
         }
         else
         {
@@ -38,17 +59,17 @@ public class levelChanger : MonoBehaviour
         canvas.enabled=false;
     }
 
-
-
     public void LoadIntroLevel() 
     { 
         Time.timeScale = 1f;
+        resetValues();
         SceneManager.LoadScene("IntroLevel"); 
     } 
 
     public void LoadLevel1() 
     { 
         Time.timeScale = 1f;
+        if(player) resetValues();
         SceneManager.LoadScene("level_1"); 
     } 
 
@@ -56,5 +77,44 @@ public class levelChanger : MonoBehaviour
     { 
         Time.timeScale = 1f;
         SceneManager.LoadScene("level_2"); 
+    } 
+
+    public void QuitGame() 
+    { 
+        Application.Quit(); 
+        // Application.Quit does nothing in the editor, so stop Play mode instead 
+        #if UNITY_EDITOR 
+        UnityEditor.EditorApplication.isPlaying = false; 
+        #endif 
+    } 
+
+    private void resetValues()
+    {
+        Inventory.keyCollected = false;
+        Inventory.crownCollected = false;
+        Inventory.diamondsCollected = 0;
+
+        playerController.enabled = true;
+    }
+
+    void SpawnConfetti() 
+    { 
+        if (confettiEffect == null) return; 
+    
+        // use the same camera the Level Complete canvas is drawn by, so the confetti lines up with it 
+        Camera cam = Camera.main;
+        if (canvas != null && canvas.worldCamera != null) cam = canvas.worldCamera; 
+        if (cam == null) return; 
+    
+        // half the height of the screen at that distance, so we can find the bottom edge 
+        float halfHeight = confettiDistance * Mathf.Tan(cam.fieldOfView * 0.5f * Mathf.Deg2Rad); 
+        Vector3 position = cam.transform.position 
+                        + cam.transform.forward * confettiDistance 
+                        - cam.transform.up * halfHeight; 
+    
+        // a particle system fires along its local Z axis, so tip it to point up the screen 
+        Quaternion rotation = cam.transform.rotation * Quaternion.Euler(-90f, 0f, 0f); 
+    
+        Instantiate(confettiEffect, position, rotation); 
     } 
 }

@@ -8,6 +8,7 @@ public class ParkourTeleporter : MonoBehaviour
     
     [SerializeField] public GameObject respawnPositions;
     [SerializeField] GameObject player;
+    [SerializeField] ParticleSystem particleSystem;
     private CharacterController playerCharacterController;
     private SphereCollider sphereCollider;
 
@@ -27,6 +28,7 @@ public class ParkourTeleporter : MonoBehaviour
         else if(!respawnPoint)
         {
             updateLatestCheckpoint();
+            if(particleSystem) particleSystem.Play();
             respawnPoint = true;
         }
     }
