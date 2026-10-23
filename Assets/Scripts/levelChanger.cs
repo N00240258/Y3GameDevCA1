@@ -23,7 +23,7 @@ public class levelChanger : MonoBehaviour
         if(canvas && canvas.enabled) {
             canvas.enabled = false;
         }
-        if (player && player.GetComponent<ThirdPersonController>()) playerController = player.GetComponent<ThirdPersonController>();
+        if (player && player.GetComponentInChildren<ThirdPersonController>()) playerController = player.GetComponentInChildren<ThirdPersonController>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -38,7 +38,7 @@ public class levelChanger : MonoBehaviour
             {
                 diamondCountText.text = "You found " + Inventory.diamondsCollected + " out of 6 diamonds";
             }
-            
+            SpawnConfetti();
             playerController.enabled = false;
             Cursor.lockState = CursorLockMode.None;
             canvas.enabled = true;
@@ -99,22 +99,35 @@ public class levelChanger : MonoBehaviour
 
     void SpawnConfetti() 
     { 
-        if (confettiEffect == null) return; 
-    
+
+        
+        if (confettiEffect == null)
+        {
+            Debug.Log("no confetti"); 
+            return; 
+        } 
+
         // use the same camera the Level Complete canvas is drawn by, so the confetti lines up with it 
-        Camera cam = Camera.main;
-        if (canvas != null && canvas.worldCamera != null) cam = canvas.worldCamera; 
-        if (cam == null) return; 
+        Camera cam = player.GetComponentInChildren<Camera>();
+        if (canvas != null && canvas.worldCamera != null)
+        {
+            cam = canvas.worldCamera; 
+        }  
+        if (cam == null){
+            Debug.Log("no camera"); 
+            return; 
+        } 
     
         // half the height of the screen at that distance, so we can find the bottom edge 
         float halfHeight = confettiDistance * Mathf.Tan(cam.fieldOfView * 0.5f * Mathf.Deg2Rad); 
-        Vector3 position = cam.transform.position 
-                        + cam.transform.forward * confettiDistance 
-                        - cam.transform.up * halfHeight; 
+        Vector3 position = cam.transform.position
+                            + cam.transform.forward * confettiDistance 
+                            - cam.transform.up * halfHeight; 
     
         // a particle system fires along its local Z axis, so tip it to point up the screen 
         Quaternion rotation = cam.transform.rotation * Quaternion.Euler(-90f, 0f, 0f); 
     
+        Debug.Log(position);
         Instantiate(confettiEffect, position, rotation); 
     } 
 }
