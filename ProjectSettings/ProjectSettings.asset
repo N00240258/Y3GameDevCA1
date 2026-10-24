@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 30
-  productGUID: 14ca9b217a9801c4bbfd1f29e9c72e2d
+  productGUID: 3d7859ab4d5a68a49aa77a2d85c24895
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
-  productName: Y3GameDevCA1
+  productName: GameDevCA1SceneImport
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -83,7 +83,7 @@ PlayerSettings:
   androidMinimumWindowHeight: 300
   androidFullscreenMode: 1
   androidAutoRotationBehavior: 1
-  androidPredictiveBackSupport: 0
+  androidPredictiveBackSupport: 1
   androidApplicationEntry: 2
   defaultIsNativeResolution: 1
   macRetinaSupport: 1
@@ -149,9 +149,8 @@ PlayerSettings:
   loadStoreDebugModeEnabled: 0
   visionOSBundleVersion: 1.0
   tvOSBundleVersion: 1.0
-  bundleVersion: 4.0.1
-  preloadedAssets:
-  - {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  bundleVersion: 0.1.0
+  preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   xboxOneDisableKinectGpuReservation: 1
@@ -171,9 +170,9 @@ PlayerSettings:
   androidMaxAspectRatio: 2.4
   androidMinAspectRatio: 1
   applicationIdentifier:
-    Android: com.unity.template.get-started
-    Standalone: com.unity.template.get-started
-    iPhone: com.unity.template.get-started
+    Android: com.UnityTechnologies.com.unity.template.urpblank
+    Standalone: com.Unity-Technologies.com.unity.template.urp-blank
+    iPhone: com.Unity-Technologies.com.unity.template.urp-blank
   buildNumber:
     Standalone: 0
     VisionOS: 0
@@ -262,9 +261,9 @@ PlayerSettings:
   iOSAutomaticallyDetectAndAddCapabilities: 1
   appleEnableProMotion: 0
   shaderPrecisionModel: 0
-  clonedFromGUID: 20edc6fe8abf3be46a7d91a34ca094f9
-  templatePackageId: com.unity.template.get-started@4.0.1
-  templateDefaultScene: 
+  clonedFromGUID: 3c72c65a16f0acb438eed22b8b16c24a
+  templatePackageId: com.unity.template.urp-blank@17.2.1
+  templateDefaultScene: Assets/Scenes/SampleScene.unity
   useCustomMainManifest: 0
   useCustomLauncherManifest: 0
   useCustomMainGradleTemplate: 0
@@ -540,6 +539,9 @@ PlayerSettings:
   - m_BuildTarget: AndroidPlayer
     m_APIs: 150000000b000000i
     m_Automatic: 0
+  - m_BuildTarget: WindowsStandaloneSupport
+    m_APIs: 0200000012000000i
+    m_Automatic: 0
   m_DefaultShaderChunkSizeInMB: 16
   m_DefaultShaderChunkCount: 0
   openGLRequireES31: 0
@@ -564,9 +566,6 @@ PlayerSettings:
   - serializedVersion: 3
     m_BuildTarget: Android
     m_Formats: 03000000i
-  - serializedVersion: 3
-    m_BuildTarget: WebGL
-    m_Formats: 05000000i
   playModeTestRunnerEnabled: 0
   runPlayModeTestAsEditModeTest: 0
   actionOnDotNetUnhandledException: 1
@@ -832,7 +831,7 @@ PlayerSettings:
   webGLWebAssemblyTable: 0
   webGLWebAssemblyBigInt: 0
   webGLCloseOnQuit: 0
-  webWasm2023: 0
+  webWasm2023: 1
   webEnableSubmoduleStrippingCompatibility: 0
   webProgressiveAssetLoading: 0
   scriptingDefineSymbols: {}
@@ -844,22 +843,7 @@ PlayerSettings:
   il2cppCodeGeneration: {}
   il2cppLTOMode: {}
   il2cppStacktraceInformation: {}
-  managedStrippingLevel:
-    Android: 1
-    EmbeddedLinux: 1
-    GameCoreScarlett: 1
-    GameCoreXboxOne: 1
-    Nintendo Switch: 1
-    PS4: 1
-    PS5: 1
-    QNX: 1
-    ReservedCFE: 1
-    VisionOS: 1
-    WebGL: 1
-    Windows Store Apps: 1
-    XboxOne: 1
-    iPhone: 1
-    tvOS: 1
+  managedStrippingLevel: {}
   incrementalIl2cppBuild: {}
   suppressCommonWarnings: 1
   allowUnsafeCode: 0
@@ -873,14 +857,14 @@ PlayerSettings:
   editorAssembliesCompatibilityLevel: 1
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: Y3GameDevCA1
+  metroPackageName: GameDevCA1SceneImport
   metroPackageVersion: 
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
   metroCertificateIssuer: 
   metroCertificateNotAfter: 0000000000000000
-  metroApplicationDescription: Y3GameDevCA1
+  metroApplicationDescription: GameDevCA1SceneImport
   wsaImages: {}
   metroTileShortName: 
   metroTileShowName: 0
