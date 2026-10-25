@@ -18,6 +18,7 @@ public class ItemCollector : MonoBehaviour
         collectSound.LoadAudioData();
         if (gameObject.GetComponentInChildren<MeshRenderer>()) meshRendererComponent = gameObject.GetComponentInChildren<MeshRenderer>();
         if (gameObject.GetComponentInChildren<Light>()) lightComponent = gameObject.GetComponentInChildren<Light>();
+        if(itemType == ItemType.key) Inventory.keyCollected = false;
     }
 
     private void OnTriggerEnter(Collider other)

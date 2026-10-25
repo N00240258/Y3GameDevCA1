@@ -63,7 +63,7 @@ public class levelChanger : MonoBehaviour
     { 
         Time.timeScale = 1f;
         resetValues();
-        SceneManager.LoadScene("IntroLevel"); 
+        SceneManager.LoadScene("IntroScene"); 
     } 
 
     public void LoadLevel1() 
@@ -95,6 +95,8 @@ public class levelChanger : MonoBehaviour
         Inventory.diamondsCollected = 0;
 
         playerController.enabled = true;
+
+        return;
     }
 
     void SpawnConfetti() 
